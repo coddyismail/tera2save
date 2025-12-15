@@ -29,7 +29,8 @@ try {
   const video = await getTeraBoxVideo(text);
 
   // TEMP DEBUG LINE
-  await bot.sendMessage(chatId, `Direct link:\n${video.directLink}`);
+  await bot.sendMessage(chatId, `Link received: ${text}\nNote: full download not supported on Vercel`);
+
 
   return res.status(200).send('OK');
 
