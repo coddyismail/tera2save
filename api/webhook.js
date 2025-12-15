@@ -1,6 +1,6 @@
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const { getTeraBoxVideo } = require('./terabox'); // adjust path if needed
+const { getTeraBoxVideo } = require('../terabox'); // 
 
 const bot = new TelegramBot(process.env.BOT_TOKEN);
 

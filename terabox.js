@@ -21,3 +21,4 @@ async function getTeraBoxVideo(link) {
 }
 
 module.exports = { getTeraBoxVideo };
+
