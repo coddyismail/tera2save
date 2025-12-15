@@ -1,6 +1,6 @@
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const { getTeraBoxVideo } = require('../terabox');
+const { getTeraBoxVideo } = require('./terabox'); // adjust path if needed
 
 const bot = new TelegramBot(process.env.BOT_TOKEN);
 
@@ -14,20 +14,20 @@ module.exports = async (req, res) => {
   const text = msg.text.trim();
 
   try {
-    if (!text.includes('terabox')) {
-      await bot.sendMessage(chatId, '⚠️ Please send a public TeraBox / 1024TeraBox link.');
+    // Check for 1024TeraBox link
+    if (!text.includes('1024terabox.com')) {
+      await bot.sendMessage(chatId, '⚠️ Please send a public 1024TeraBox link.');
       return res.status(200).send('OK');
     }
 
     await bot.sendMessage(chatId, '🔍 Processing your link...');
 
-    // Get file metadata & direct link
     const video = await getTeraBoxVideo(text);
 
     // Send info + direct download link to user
     await bot.sendMessage(
       chatId,
-      `✅ File ready!\n\n📄 Name: ${video.fileName}\n📦 Size: ${video.size || 'Unknown'}\n🔗 Direct download: ${video.directLink}`
+      `✅ Your file info:\n\n📄 Name: ${video.fileName}\n📦 Size: ${video.size}\n🔗 Download link: ${video.directLink}`
     );
 
     return res.status(200).send('OK');
