@@ -4,7 +4,7 @@ const { getTeraBoxVideo } = require('./terabox');
 const { downloadVideo } = require('./downloader');
 
 const TOKEN = process.env.BOT_TOKEN;
-const bot = new TelegramBot(TOKEN, { polling: true });
+const bot = new TelegramBot(TOKEN);
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
